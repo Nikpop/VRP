@@ -67,6 +67,9 @@ class PostsCreateView(LoginRequiredMixin, CreateView):
             post.terrain = request.POST.get('terrain')
             post.fname = request.POST.get('checkname')
             post.author_id = request.POST.get('author')
+            post.posx = float(request.POST.get('posx'))
+            post.posy = float(request.POST.get('posy'))
+            post.posz = float(request.POST.get('posz'))
             form = ImageForm(request.POST, request.FILES)
             if form.is_valid():
                 post.image = request.FILES['image']

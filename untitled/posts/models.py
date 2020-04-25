@@ -10,7 +10,11 @@ class Posts(models.Model):
     background = models.TextField()
     fname = models.TextField(default="Text")
     date = models.DateTimeField(auto_now_add=True)
+    posx = models.DecimalField(default=0,max_digits=10, decimal_places=1)
+    posy = models.DecimalField(default=2,max_digits=10, decimal_places=1)
+    posz = models.DecimalField(default=-3.8,max_digits=10, decimal_places=1)
     image = models.FileField(upload_to='images', default="null")
+
     author = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,

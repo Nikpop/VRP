@@ -20,6 +20,10 @@
                 <th>Title</th>
                 <th>Body</th>
                 <th>Background</th>
+                <th>Image</th>
+                <th>POS X</th>
+                <th>POS Y</th>
+                <th>POS Z</th>
                 <th>Terrain</th>
                 <th>Date</th>
                 <th>Action</th>
@@ -29,6 +33,10 @@
                 <td>{{ object.title }} </td>
                 <td>{{ object.body }} </td>
                 <td>{{ object.background }} </td>
+                <td>{{ object.image }} </td>
+                <td>{{ object.posx }} </td>
+                <td>{{ object.posy}} </td>
+                <td>{{ object.posz }} </td>
                 <td>{{ object.terrain }} </td>
                 <td>{{ object.text_posts }} </td>
                 <td>{{ object.date }} </td>
@@ -282,6 +290,9 @@
                        >
           </a-animation>
         </a-image>
+      </a-entity>
+      <a-entity id="imageUploaded" position="0 0 0">
+        <a-image id="imageUp" position ="{{object.posx}} {{object.posy}} {{object.posz}}" src= "{{object.image.url}}"></a-image>
       </a-entity>
     </a-scene>
   </body>
