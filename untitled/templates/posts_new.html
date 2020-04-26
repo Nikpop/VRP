@@ -224,9 +224,16 @@
                         </ul>
                      <li class='has-sub'><a href='index.html'><span>Image</span></a>
                         <ul>
-                            <div id="image">
-                                <p>{{ form.image.label}}</p>
-                                  <p>  {{ form.image}}</p>
+                            <div class= "fieldWrapper" id="image">
+                                {{ form.image.errors}}
+                                <div class="pos" >
+                                <label for="">Select the position of Image:</label>
+                                    {{form.posx}}
+                                    {{form.posy}}
+                                    {{form.posz}}
+                                </div>
+                                {{ form.image.label_tag }}
+                                {{ form.image }}
                                 <!-- <div class="prokrutka">     
                                 <div class="image">
                                     <button type="button" class="add_form_field">Add New Field &nbsp; <span
@@ -377,22 +384,6 @@
 </a-scene>
 <script>
     
-    function createDestroyImage(a){
-
-        if(addedImage){
-            a.removeChild(addedImage);
-            addedImage = null;
-        } else {
-            let b = document.createElement("a-image");
-            b.setAttribute("position", {
-                "x" : 0,
-                "y" : 3.8,
-                "z" : 3.8
-            });
-            a.appendChild(b);
-            addedImage = b;
-        }
-    }
     var textAreas = [];
     var layout = "straight";
 	var checkname = '';
@@ -544,21 +535,35 @@
     function readURL(input) {
         if (input.files && input.files[0]) {
         var reader = new FileReader();
+        var imageEl = document.getElementById('imageUp')
         var imageEl = document.createElement('a-image');
-        
+        if(!document.getElementById('imageUploaded')){
+            var entityEl = document.createElement('a-entity');
+            entityEl.setAttribute('id', 'imageUploaded');
+        } else {
+            var entityEl = document.getElementById('imageUploaded')
+            entityEl.textContent = ''
+        }
+        imageEl.setAttribute('id', 'imageUp');
         reader.onload = function(e) {
-            imageEl.setAttribute('testeComponent', '');
-            imageEl.setAttribute('position', {x: 1, y: 2, z: -3});
+            imageEl.setAttribute('imageComponent', '');
+            entityEl.setAttribute('position', {x: 0, y: 0, z: 0});
             imageEl.setAttribute('src',e.target.result);
         }
         reader.readAsDataURL(input.files[0]);
-        sceneEl.appendChild(imageEl); // convert to base64 string
+        entityEl.appendChild(imageEl);
+        sceneEl.appendChild(entityEl); // convert to base64 string
         }
     }
-    AFRAME.registerComponent('testeComponent', {
+    AFRAME.registerComponent('imageComponent', {
         init: function () {
+        var posx = parseFloat($('#id_posx').val());
+        var posy = parseFloat($('#id_posy').val())
+        var posz = parseFloat($('#id_posz').val());
         // This will be called after the entity has properly attached and loaded.
+        var imageEl = document.getElementById('imageUp')
         console.log('I am ready!');
+        imageEl.setAttribute('position', {x:posx, y: posy, z: posz}) 
         }
     });
     AFRAME.registerComponent('foo', {

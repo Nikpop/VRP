@@ -149,3 +149,19 @@
 #cssmenu ul ul li > a:hover:after {
     border-color: #ffffff;
 }
+form #image input{
+    margin-left: 15px;
+}
+form label {
+    margin-top: 20px;
+    margin-left: 10px;
+    color:#323232 !important
+}
+form .pos {
+    display: inline-block;
+    vertical-align: center;
+}
+
+form .pos input{
+    width: 3em;
+}
