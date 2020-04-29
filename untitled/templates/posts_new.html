@@ -567,6 +567,14 @@
                 $("#id_image").change(function(){
                   readURL(this);
                 });
+                $(".pos input").change(function(e){
+                    var posx = parseFloat($('#id_posx').val());
+                    var posy = parseFloat($('#id_posy').val())
+                    var posz = parseFloat($('#id_posz').val());
+                    // This will be called after the entity has properly attached and loaded.
+                    var imageEl = document.getElementById('imageUp');
+                    imageEl?imageEl.setAttribute('position', {x:posx, y: posy, z: posz}):"";
+                });
             });
         }
 
